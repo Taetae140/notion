@@ -118,7 +118,7 @@
     <button id="next"><i class="fas fa-arrow-right"></i></button>
   </div>
   <!-- partial -->
- <script>
+<script>
   const slides = document.querySelectorAll(".slide");
   const nextButton = document.getElementById("next");
   const prevButton = document.getElementById("prev");
@@ -147,7 +147,7 @@
   };
 
   nextButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default behavior of the anchor tag
+    event.stopPropagation(); // Stop propagation to prevent the click event from reaching the anchor tag
     nextSlide();
     if (auto) {
       clearInterval(slideInterval);
@@ -155,7 +155,7 @@
     }
   });
   prevButton.addEventListener("click", (event) => {
-    event.preventDefault(); // Prevent default behavior of the anchor tag
+    event.stopPropagation(); // Stop propagation to prevent the click event from reaching the anchor tag
     prevSlide();
     if (auto) {
       clearInterval(slideInterval);
@@ -167,6 +167,7 @@
     slideInterval = setInterval(nextSlide, intervalTime);
   }
 </script>
+
 </body>
 
 </html>
