@@ -36,22 +36,12 @@
       height: 100%;
       opacity: 0;
       transition: opacity 0.4s ease-in-out;
+      background-size: cover;
+      background-position: center;
     }
 
     .slide.current {
       opacity: 1;
-    }
-
-    .slide:first-child {
-      background: url("1.jpg") no-repeat center top/cover;
-    }
-
-    .slide:nth-child(2) {
-      background: url("2.jpg") no-repeat center top/cover;
-    }
-
-    .slide:nth-child(3) {
-      background: url("3.jpg") no-repeat center top/cover;
     }
 
     .buttons button#prev {
@@ -104,9 +94,15 @@
 <body>
   <!-- partial:index.partial.html -->
   <div class="slider">
-    <a href="https://www.google.com" class="slide current"></a>
-    <a href="https://www.notion.com" class="slide"></a>
-    <a href="https://www.tumblr.com" class="slide"></a>
+    <div class="slide current">
+      <a href="https://www.google.com"></a>
+    </div>
+    <div class="slide">
+      <a href="https://www.notion.com"></a>
+    </div>
+    <div class="slide">
+      <a href="https://www.tumblr.com"></a>
+    </div>
   </div>
   <div class="buttons">
     <button id="prev"><i class="fas fa-arrow-left"></i></button>
