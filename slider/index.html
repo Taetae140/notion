@@ -147,19 +147,24 @@
   };
 
   nextButton.addEventListener("click", (event) => {
-    event.stopPropagation(); // Stop propagation to prevent the click event from reaching the anchor tag
-    nextSlide();
-    if (auto) {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, intervalTime);
+    // Check if the click target is the button itself or its child (icon)
+    if (event.target === nextButton || event.target.parentElement === nextButton) {
+      nextSlide();
+      if (auto) {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, intervalTime);
+      }
     }
   });
+
   prevButton.addEventListener("click", (event) => {
-    event.stopPropagation(); // Stop propagation to prevent the click event from reaching the anchor tag
-    prevSlide();
-    if (auto) {
-      clearInterval(slideInterval);
-      slideInterval = setInterval(nextSlide, intervalTime);
+    // Check if the click target is the button itself or its child (icon)
+    if (event.target === prevButton || event.target.parentElement === prevButton) {
+      prevSlide();
+      if (auto) {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, intervalTime);
+      }
     }
   });
 
@@ -167,6 +172,7 @@
     slideInterval = setInterval(nextSlide, intervalTime);
   }
 </script>
+
 
 </body>
 
