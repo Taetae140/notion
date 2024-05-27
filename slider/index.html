@@ -141,8 +141,7 @@
   };
 
   nextButton.addEventListener("click", (event) => {
-    // Check if the click target is the button itself or its child (icon)
-    if (event.target === nextButton || event.target.parentElement === nextButton) {
+    if (event.target === nextButton) {
       nextSlide();
       if (auto) {
         clearInterval(slideInterval);
@@ -152,8 +151,7 @@
   });
 
   prevButton.addEventListener("click", (event) => {
-    // Check if the click target is the button itself or its child (icon)
-    if (event.target === prevButton || event.target.parentElement === prevButton) {
+    if (event.target === prevButton) {
       prevSlide();
       if (auto) {
         clearInterval(slideInterval);
@@ -166,7 +164,6 @@
     slideInterval = setInterval(nextSlide, intervalTime);
   }
 </script>
-
 
 
 </body>
