@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Full-Screen Responsive Image Slider</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap");
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Lexend", sans-serif;
+      background-color: #362a2b;
+      color: #e5ebf3;
+    }
+
+    .slider {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide.current {
+      opacity: 1;
+    }
+
+    .buttons button#prev {
+      position: absolute;
+      top: 50%;
+      left: 1rem;
+      z-index: 2; /* Ensure buttons are above links */
+    }
+
+    .buttons button#next {
+      position: absolute;
+      top: 50%;
+      right: 1rem;
+      z-index: 2; /* Ensure buttons are above links */
+    }
+
+    .buttons button {
+      border: 2px solid #e5ebf3;
+      background-color: transparent;
+      color: #e5ebf3;
+      cursor: pointer;
+      padding: 13px 15px;
+      border-radius: 50%;
+      outline: none;
+      z-index: 2; /* Ensure buttons are above links */
+    }
+
+    .buttons button:hover {
+      background-color: #e5ebf3;
+      color: #362a2b;
+    }
+
+    .slide-link {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Ensure links are below buttons */
+    }
+
+  .buttons button#prev,
+  .buttons button#next {
+    display: none;
+  }
+
+    @media (min-width: 640px) and (min-height: 640px) {
+      .slide .content {
+        bottom: 70px;
+        left: -600px;
+        width: 600px;
+        padding: 2rem;
+        line-height: 1.6;
+      }
+
+      .slide .content h1 {
+        font-size: 2rem;
+      }
+
+      .slide.current .content {
+        transform: translateX(600px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="slider">
+    <div class="slide current" style="background-image: url('1.jpg');">
+      <a href="https://www.notion.so/b1d769a8268440308708f8b2b5ead6fb?v=28ef0b4727a2497d8d7af4f4fcbb1139" class="slide-link" target="_blank"></a>
+    </div>
+    <div class="slide" style="background-image: url('2.jpg');">
+      <a href="https://www.tumblr.com" class="slide-link" target="_blank"></a>
+    </div>
+    <div class="slide" style="background-image: url('3.jpg');">
+      <a href="https://www.notion.com" class="slide-link" target="_blank"></a>
+    </div>
+  </div>
+  <div class="buttons">
+    <button id="prev"><i class="fas fa-arrow-left"></i></button>
+    <button id="next"><i class="fas fa-arrow-right"></i></button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const nextButton = document.getElementById("next");
+    const prevButton = document.getElementById("prev");
+    const auto = true;
+    const intervalTime = 5000;
+    let slideInterval;
+
+    const nextSlide = () => {
+      const current = document.querySelector(".current");
+      const next = current.nextElementSibling || slides[0];
+      current.classList.remove("current");
+      next.classList.add("current");
+    };
+
+    const prevSlide = () => {
+      const current = document.querySelector(".current");
+      const prev = current.previousElementSibling || slides[slides.length - 1];
+      current.classList.remove("current");
+      prev.classList.add("current");
+    };
+
+    nextButton.addEventListener("click", () => {
+      nextSlide();
+      if (auto) {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, intervalTime);
+      }
+    });
+
+    prevButton.addEventListener("click", () => {
+      prevSlide();
+      if (auto) {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, intervalTime);
+      }
+    });
+
+    if (auto) {
+      slideInterval = setInterval(nextSlide, intervalTime);
+    }
+  </script>
+</body>
+</html>
